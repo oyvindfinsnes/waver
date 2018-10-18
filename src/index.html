@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Icon font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Styles and scripts -->
+  <link rel="stylesheet" href="master.css">
+</head>
+
+<body>
+  <!-- App Titlebar (this is a static element that should not be changed) -->
+  <div id="app-titlebar" class="titlebar">
+    <i id="win-minimize" class="material-icons button">remove</i>
+    <i id="win-settings" class="material-icons button">settings</i>
+    <i id="win-close" class="material-icons button">close</i>
+  </div>
+  <!-- Container for the entire UI (except Titlebar) -->
+  <div class="app-container">
+    <!-- Command-line-like interface -->
+    <div class="commandcenter">
+      <div id="cmd-history" class="history"></div>
+      <div class="commandline">
+        <div id="cmd-path" class="path"></div>
+        <span class="input-container">
+          <span>$</span>
+          <input type="text" id="cmd-input" class="inputfield input-reset">
+        </span>
+      </div>
+    </div>
+    <!-- Song list loaded from folder -->
+    <div class="songlist-container">
+      <div class="songlist-header">
+        <span>Path:</span>
+      </div>
+      <div class="song-list"></div>
+      <div class="songlist-footer"></div>
+    </div>
+  </div>
+  <!-- Create a main entry point for the "central collection" script -->
+  <script>require('./preload.js');</script>
+</body>
+
+</html>

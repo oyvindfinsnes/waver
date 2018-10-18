@@ -1,0 +1,277 @@
+/*
+The CSS contains huge blocks of '=' between sections to easily identify each
+section when using the code minimap
+*/
+
+/* Tooltip should show after 1s, and animation length is 300ms, total 1.3s
+1000ms / 1300ms is about 0.769, which means the element should start displaying
+at approx. 77% */
+@keyframes displayTooltip {
+  77% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+html {
+  --main-background: #101010;
+  --titlebar-background: #252525;
+  --text: #ffffff;
+  --text-dim: #eeeeee;
+  --border: #444444;
+  --light-gray: #666666;
+  --dark-green: #22da57;
+  --light-yellow: #addb5d;
+  --animation-timing: cubic-bezier(0.62, 0.28, 0.23, 0.99);
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 16px;
+  color: var(--text);
+  cursor: default;
+  user-select: none;
+  background-color: var(--main-background);
+  font-family: 'consolas';
+}
+
+.app-container {
+  width: 100vw;
+  height: calc(100vh - 30px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 100%;
+}
+
+.input-reset {
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'consolas';
+}
+
+/*
+=============================================================================
+Titlebar styles
+===========================================================================
+*/
+
+.titlebar {
+  height: 30px;
+  display: flex;
+  -webkit-app-region: drag;
+  justify-content: flex-end;
+  background-color: var(--titlebar-background);
+}
+
+.button {
+  width: 45px;
+  opacity: 0.5;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  -webkit-app-region: no-drag;
+  transition: background ease 100ms, opacity ease 100ms;
+}
+
+.button:hover {
+  opacity: 1;
+  background-color: var(--light-gray);
+}
+
+/*
+=============================================================================
+Command Center styles
+===========================================================================
+*/
+
+.commandcenter {
+  display: grid;
+  grid-template-rows: auto 50px;
+  border-right: 1px solid var(--border);
+}
+
+.history::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history::-webkit-scrollbar-thumb {
+  opacity: 0.5;
+  border-radius: 3px;
+  background-color: var(--light-gray);
+}
+
+.history {
+  padding: 10px 7px;
+  overflow-y: auto;
+}
+
+.history > p {
+  margin: 8px;
+  word-break: break-all;
+}
+
+.commandline {
+  cursor: text;
+  display: grid;
+  padding: 0 7px;
+  width: 100%;
+  box-sizing: border-box;
+  grid-template-rows: repeat(2, 1fr);
+  border-top: 1px solid var(--border);
+}
+
+.path {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+}
+
+.path > p {
+  margin: 0;
+}
+
+.path > p:first-child {
+  margin-right: 8px;
+  color: var(--dark-green);
+}
+
+.path > p:last-child {
+  color: var(--light-yellow);
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.input-container > span {
+  margin-right: 8px;
+}
+
+.inputfield {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/*
+=============================================================================
+SongList styles
+===========================================================================
+*/
+
+.songlist-container {
+  display: grid;
+  grid-template-rows: 40px auto 50px;
+}
+
+.songlist-header,
+.song-list,
+.songlist-footer {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+}
+
+.songlist-header {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  border-bottom: solid 1px var(--border);
+}
+
+.songlist-header > p {
+  margin: 0;
+}
+
+.songlist-header > span {
+  margin-right: 8px;
+  color: var(--text-dim);
+}
+
+.songlist-header > p:first-of-type {
+  margin-right: 8px;
+  color: var(--dark-green);
+}
+
+.songlist-header > p:last-of-type {
+  color: var(--light-yellow);
+}
+
+.song-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+  opacity: 0.5;
+  border-radius: 3px;
+  background-color: var(--light-gray);
+}
+
+/* width:auto is applied to make song-container (inside song-list) able to be a
+% width of its parent, which is required for the text-overflow: ellipsis rule
+for song-containers first child (song name)*/
+.song-list {
+  width: auto;
+  overflow: auto;
+}
+
+.song-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.song-container > p {
+  padding: 0;
+  font-size: 16px;
+}
+
+.song-container > p:first-of-type {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 20px;
+}
+
+/* This ruleset is for a custom tooltip for elements with data-title */
+.song-container::after {
+  content: attr(data-title);
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  padding: 3px 6px;
+  background-color: var(--titlebar-background);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  z-index: 1;
+  opacity: 0;
+  display: none;
+}
+
+/* Always remember to not use display in keyframes, as it can't be animated */
+.song-container:hover.song-container::after {
+  display: block;
+  animation: displayTooltip 1300ms var(--animation-timing) forwards;
+}
+
+.songlist-footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  font-size: 16px;
+  color: var(--text-dim);
+  border-top: solid 1px var(--border);
+}

@@ -1,0 +1,20 @@
+{
+  "name": "waver",
+  "version": "1.0.0",
+  "description": "A Music Player For the Command Prompt Traversers.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . Waver --asar --icon=src/images/icon.ico"
+  },
+  "keywords": [
+    "music",
+    "coding"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^3.0.2",
+    "electron-packager": "^12.2.0"
+  }
+}

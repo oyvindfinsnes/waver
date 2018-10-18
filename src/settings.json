@@ -1,0 +1,17 @@
+{
+  "window": {
+    "size": [
+      1280,
+      720
+    ]
+  },
+  "preferences": {
+    "random": false,
+    "volume": 5,
+    "validMusicPath": null
+  },
+  "startup": {
+    "loadSongs": false,
+    "autoplay": false
+  }
+}
