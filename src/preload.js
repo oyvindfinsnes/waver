@@ -16,8 +16,8 @@ from here (modifications are supposed to be triggered by user events in other
 scripts).
 */
 
-require("./components/Titlebar");
-require("./components/CommandLog");
-require("./components/CommandLine");
-require("./components/SongList");
-require("./components/Settings");
+require('./components/Titlebar');
+require('./components/CommandLog');
+require('./components/CommandLine');
+require('./components/SongList');
+require('./components/Settings');

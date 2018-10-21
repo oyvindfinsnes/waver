@@ -1,0 +1,17 @@
+{
+  "browser": true,
+  "node": true,
+  "esversion": 6,
+  "eqeqeq": true,
+  "indent": 2,
+  "latedef": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "eqnull": true,
+  "plusplus": true,
+  "notypeof": true,
+  "bitwise": true,
+  "curly": true,
+  "nonbsp": true
+}
