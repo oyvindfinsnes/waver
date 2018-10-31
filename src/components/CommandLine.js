@@ -42,7 +42,7 @@ class CommandLine {
       } else if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
         // This clause is used to reset the index whenever the user types or
         // deletes anything, but preserves index for when user navigates through
-        // text with left/right arrow
+        // the letters in the text with left/right arrow
         CommandLog.setIndex(-1);
       }
     });
@@ -87,6 +87,7 @@ class CommandLine {
       'ds': () => this.cmdPathDesktop(cmdArr),
       'load': () => this.cmdLoad(cmdArr),
       'ls': () => this.cmdListDir(cmdArr),
+      'play': () => this.cmdStartPlay(cmdArr),
       'spath': () => this.cmdSavePath(cmdArr),
       'vol': () => this.cmdVolume(cmdArr)
     };
@@ -305,6 +306,17 @@ class CommandLine {
             persists, please restart the application`
       };
     }
+  }
+
+  cmdStartPlay(cmdArr) {
+    if (cmdArr.length > 1) {
+      return {
+        'type': 'error',
+        'content': `Too many arguments passed for command "${cmdArr[0]}"`
+      };
+    }
+
+    // code ...
   }
 
   cmdSavePath(cmdArr) {
